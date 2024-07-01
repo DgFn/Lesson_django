@@ -1,0 +1,14 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+    {% for comment in comments %}
+        <h3>{{ comment.user.username }} </h3>
+        <div>{{ comment.created }}</div>
+        <div>{{ comment.user.bio }}</div>
+        <div>{{ comment.id }}</div>
+    {% endfor %}
+</body>
+</html>
