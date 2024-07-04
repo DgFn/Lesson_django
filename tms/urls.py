@@ -20,7 +20,6 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
 
 from tms import settings
-from tms_app.views import main
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('tms_app.urls')),

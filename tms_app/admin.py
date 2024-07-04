@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from tms_app.models import Post, UserProfile, Comment
+from tms_app.models import Post, Comment
 
 
 # Register your models here.
@@ -13,10 +13,7 @@ class PostAdmin(admin.ModelAdmin):
     readonly_fields = ('created',)
 
 
-@admin.register(UserProfile)
-class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('id', 'username', 'email')
-    ordering = ('id',)
+
 
 
 @admin.register(Comment)
