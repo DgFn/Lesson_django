@@ -16,12 +16,12 @@ class EditUserInfoView(View):
 
     def post(self, request):
         """Проверяет введеные данные и возвращает страницу в зависимости от данных"""
-        if request.method == 'POST':
-            form = EditUserInfoForm(request.POST, instance=request.user)
 
-            if form.is_valid():
-                form.save()
-                return redirect('info')
+        form = EditUserInfoForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect('info')
 
         context = {'title': 'Редактирование', 'form': form}
         return render(request, 'edit_user_info.html', context)

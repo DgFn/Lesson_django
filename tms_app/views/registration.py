@@ -14,12 +14,11 @@ class RegistrationView(View):
 
     def post(self, request):
         """Проверяет верно ли введены данные"""
-        if request.method == 'POST':
-            form = RegistrationForm(request.POST)
 
-            if form.is_valid():
-                form.save()
-                return redirect('/')
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
 
         context = {'title': 'Регистрация', 'form': form}
         return render(request, 'registration_form.html', context)

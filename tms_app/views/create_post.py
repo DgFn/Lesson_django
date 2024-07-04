@@ -14,10 +14,9 @@ class PostCreateView(CreateView):
 
     def post(self, request):
         """Проверка введеных данных и возврат в зависимости от проверки"""
-        if request.method == 'POST':
-            form = CreatePostForm(request.POST, request.FILES)
-            if form.is_valid():
-                return self.form_valid(form)
+        form = CreatePostForm(request.POST, request.FILES)
+        if form.is_valid():
+            return self.form_valid(form)
 
         return render(request, 'create_page.html', {'form': form})
 

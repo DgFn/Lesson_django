@@ -18,15 +18,15 @@ class AuthorizationView(View):
 
     def post(self, request):
         """Проверка введеных данных и возврат в зависимости от проверки"""
-        if request.method == "POST":
-            form = AuthorizationForm(request.POST)
-            if form.is_valid():
-                username = form.cleaned_data['username']
-                password = form.cleaned_data['password']
-                user = authenticate(username=username, password=password)
-                if user:
-                    login(request, user)
-                    return redirect('/')
+
+        form = AuthorizationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            if user:
+                login(request, user)
+                return redirect('/')
 
         context = {'title': 'Авторизация', 'form': form}
         return render(
