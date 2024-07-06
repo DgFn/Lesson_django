@@ -9,6 +9,8 @@ class AuthorizationView(View):
     """Авторизация"""
     def get(self, request):
         """Возврат форму для ввода данных"""
+        if request.user.is_authenticated:
+            return redirect('main')
         form = AuthorizationForm()
         context = {'title': 'Авторизация', 'form': form}
         return render(
@@ -19,6 +21,7 @@ class AuthorizationView(View):
     def post(self, request):
         """Проверка введеных данных и возврат в зависимости от проверки"""
 
+        error_message = None
         form = AuthorizationForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
@@ -28,7 +31,9 @@ class AuthorizationView(View):
                 login(request, user)
                 return redirect('/')
 
-        context = {'title': 'Авторизация', 'form': form}
+            error_message = "Неверный логин или пароль"
+
+        context = {'title': 'Авторизация', 'form': form, 'error_message': error_message}
         return render(
             request,
             'authorization_page.html',

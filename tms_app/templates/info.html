@@ -1,17 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{title}}</title>
-</head>
-<body>
+<!-- user_info.html -->
+
+{% extends 'main_page.html' %}
+
+{% block title %}Информация о пользователе{% endblock %}
+
+{% block content %}
     <h1>User Info</h1>
 
     <p>Username: {{ user.username }}</p>
     <p>Email: {{ user.email }}</p>
     <p>Имя: {{ user.first_name }}</p>
     <p>Фамилия: {{ user.last_name }}</p>
+
+    {% if profile.profile_pic %}
+        <img src="{{ profile.profile_pic.url }}" alt="" width="100px" height="100px">
+    {% else %}
+        <p>Изображение профиля отсутствует</p>
+    {% endif %}
+
+    <p>Мобила: {{ profile.phone_number }}</p>
+    <p>Гит: {{ profile.github_link }}</p>
+
     <a href="{% url 'edit_info' %}">Редактировать</a>
     <a href="{% url 'main' %}">На основную</a>
-</body>
-</html>
+{% endblock %}

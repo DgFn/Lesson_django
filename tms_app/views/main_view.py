@@ -8,7 +8,7 @@ class Main(View):
     """Основная вьюха"""
     def get(self, request):
         """Возвращает основную страницу с постами"""
-        posts = Post.objects.prefetch_related('comment_set').all()
+        posts = Post.objects.all()
         context = {'title': 'Бложик', 'posts': posts}
         return render(request, 'main_page.html', context)
 

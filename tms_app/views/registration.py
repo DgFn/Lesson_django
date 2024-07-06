@@ -1,3 +1,4 @@
+from django.contrib.auth import login
 from django.shortcuts import redirect, render
 from django.views import View
 
@@ -8,6 +9,8 @@ class RegistrationView(View):
     """Регистрации"""
     def get(self, request):
         """Возвращает форму для регистрации"""
+        if request.user.is_authenticated:
+            return redirect('main')
         form = RegistrationForm()
         context = {'title': 'Регистрация', 'form': form}
         return render(request, 'registration_form.html', context)
@@ -17,7 +20,8 @@ class RegistrationView(View):
 
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            login(request, user)
             return redirect('/')
 
         context = {'title': 'Регистрация', 'form': form}

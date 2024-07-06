@@ -10,6 +10,9 @@
         {{ form }}
         <input type="submit" value="Авторизоваться">
         <a href="{% url 'registration' %}"> Нет аккаута? Зарегистрируйтесь!</a>
+        <p>{% if error_message %}{{ error_message }}{% endif %}</p>
+
+
     </form>
 </body>
 </html>
