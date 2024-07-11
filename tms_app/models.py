@@ -8,7 +8,8 @@ class Post(models.Model):
     title = models.CharField(max_length=256, unique=False, blank=False, null=False)
     text = models.CharField(max_length=2000, blank=False, null=False)
     is_published = models.BooleanField(default=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False, related_name='posts')
+
 
     def __str__(self):
         return self.title

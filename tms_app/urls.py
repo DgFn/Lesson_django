@@ -19,21 +19,11 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
 
-from tms import settings
 
-from tms_app.views.main_view import Main
-from tms_app.views.registration import RegistrationView
-from tms_app.views.authorization_view import AuthorizationView, user_logout
-from tms_app.views.info_user import InfoUserView
-from tms_app.views.edit_user_info import EditUserInfoView
-from tms_app.views.create_post import PostCreateView
+from tms_app.api.views.pubserial import PubSerial
+
+
 
 urlpatterns = [
-    path('', Main.as_view(), name='main'),
-    path('registration/', RegistrationView.as_view(), name='registration'),
-    path('authorization/', AuthorizationView.as_view(), name='authorization'),
-    path('logout/', user_logout, name='logout'),
-    path('info/', InfoUserView.as_view(), name='info'),
-    path('edit_info/', EditUserInfoView.as_view(), name='edit_info'),
-    path('new_post', PostCreateView.as_view(), name='new_post'),
+    path('api/post', PubSerial.as_view({'get': 'list', 'post': 'create'}), name='api'),
 ]
