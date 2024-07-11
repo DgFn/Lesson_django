@@ -20,10 +20,10 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
 
 
-from tms_app.api.views.pubserial import PubSerial
+from tms_app.api.views.pubserial import PostViewSet
 
 
 
 urlpatterns = [
-    path('api/post', PubSerial.as_view({'get': 'list', 'post': 'create'}), name='api'),
+    path('api/post', PostViewSet.as_view({'get': 'list', 'post': 'create'}), name='api'),
 ]
